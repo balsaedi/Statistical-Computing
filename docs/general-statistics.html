@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 General Statistics | Statistical Computing</title>
+  <meta name="description" content="Chapter 4 General Statistics | Statistical Computing" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 General Statistics | Statistical Computing" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 General Statistics | Statistical Computing" />
+  
+  
+  
+
+<meta name="author" content="YOUR NAME HERE" />
+
+
+<meta name="date" content="2024-11-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="group-manipulation.html"/>
+<link rel="next" href="simple-linear-regression.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SHORT TITLE HERE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Reviews</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#data-types-and-structures"><i class="fa fa-check"></i><b>1.1</b> Data Types and Structures</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#data-types"><i class="fa fa-check"></i><b>1.1.1</b> Data Types</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#data-structures"><i class="fa fa-check"></i><b>1.1.2</b> Data Structures</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#data-importing-and-exporting"><i class="fa fa-check"></i><b>1.2</b> Data Importing and Exporting</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#data-cleaning"><i class="fa fa-check"></i><b>1.3</b> Data Cleaning</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#data-visualization"><i class="fa fa-check"></i><b>1.4</b> Data Visualization</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#hands-on-exercises"><i class="fa fa-check"></i><b>1.5</b> <span style="color: green;"><strong>Hands-on Exercises</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>2</b> Functions</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="functions.html"><a href="functions.html#writing-functions"><i class="fa fa-check"></i><b>2.1</b> Writing Functions</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="functions.html"><a href="functions.html#user-defined-functions"><i class="fa fa-check"></i><b>2.1.1</b> User-Defined Functions</a></li>
+<li class="chapter" data-level="2.1.2" data-path="functions.html"><a href="functions.html#built-in-fuctions"><i class="fa fa-check"></i><b>2.1.2</b> Built-in Fuctions</a></li>
+<li class="chapter" data-level="2.1.3" data-path="functions.html"><a href="functions.html#package-functions"><i class="fa fa-check"></i><b>2.1.3</b> Package Functions</a></li>
+<li class="chapter" data-level="2.1.4" data-path="functions.html"><a href="functions.html#type-of-arguments-in-r-functions"><i class="fa fa-check"></i><b>2.1.4</b> Type of arguments in R functions</a></li>
+<li class="chapter" data-level="2.1.5" data-path="functions.html"><a href="functions.html#understanding-return-values-in-r-functions"><i class="fa fa-check"></i><b>2.1.5</b> Understanding Return Values in R Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="functions.html"><a href="functions.html#calling-the-functions"><i class="fa fa-check"></i><b>2.2</b> Calling the Functions</a></li>
+<li class="chapter" data-level="2.3" data-path="functions.html"><a href="functions.html#function-documentation"><i class="fa fa-check"></i><b>2.3</b> Function Documentation</a></li>
+<li class="chapter" data-level="2.4" data-path="functions.html"><a href="functions.html#hands-on-exercise"><i class="fa fa-check"></i><b>2.4</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="group-manipulation.html"><a href="group-manipulation.html"><i class="fa fa-check"></i><b>3</b> Group Manipulation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="group-manipulation.html"><a href="group-manipulation.html#apply-family"><i class="fa fa-check"></i><b>3.1</b> Apply Family</a></li>
+<li class="chapter" data-level="3.2" data-path="group-manipulation.html"><a href="group-manipulation.html#aggregate-plyr"><i class="fa fa-check"></i><b>3.2</b> Aggregate Plyr</a></li>
+<li class="chapter" data-level="3.3" data-path="group-manipulation.html"><a href="group-manipulation.html#data-reshaping"><i class="fa fa-check"></i><b>3.3</b> Data Reshaping</a></li>
+<li class="chapter" data-level="3.4" data-path="group-manipulation.html"><a href="group-manipulation.html#hands-on-exercise-1"><i class="fa fa-check"></i><b>3.4</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="general-statistics.html"><a href="general-statistics.html"><i class="fa fa-check"></i><b>4</b> General Statistics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="general-statistics.html"><a href="general-statistics.html#measure-of-spread-and-central-tendency"><i class="fa fa-check"></i><b>4.1</b> Measure of Spread and Central Tendency</a></li>
+<li class="chapter" data-level="4.2" data-path="general-statistics.html"><a href="general-statistics.html#data-visualization-1"><i class="fa fa-check"></i><b>4.2</b> Data Visualization</a></li>
+<li class="chapter" data-level="4.3" data-path="general-statistics.html"><a href="general-statistics.html#inferential-statistics"><i class="fa fa-check"></i><b>4.3</b> Inferential Statistics</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="general-statistics.html"><a href="general-statistics.html#introduction-to-hypothesis-testing"><i class="fa fa-check"></i><b>4.3.1</b> Introduction to Hypothesis Testing</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="general-statistics.html"><a href="general-statistics.html#hands-on-exercise-2"><i class="fa fa-check"></i><b>4.4</b> <span style="color: green;"><strong>Hands-on Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#basics-of-wilkinson-rogers-notation-y-x-linear-regression"><i class="fa fa-check"></i><b>5.1</b> Basics of Wilkinson-Rogers Notation (y ~ x), Linear Regression</a></li>
+<li class="chapter" data-level="5.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#scatterplots-with-regression-lines-reading-lm-output"><i class="fa fa-check"></i><b>5.2</b> Scatterplots with Regression Lines, Reading lm() Output</a></li>
+<li class="chapter" data-level="5.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#confidence-intervals-for-regression-coefficients-testing-coefficients"><i class="fa fa-check"></i><b>5.3</b> Confidence Intervals for Regression Coefficients, Testing Coefficients</a></li>
+<li class="chapter" data-level="5.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#identifying-points-in-a-plot"><i class="fa fa-check"></i><b>5.4</b> Identifying Points in a Plot</a></li>
+<li class="chapter" data-level="5.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#hands-on-exercise-3"><i class="fa fa-check"></i><b>5.5</b> <span style="color: green;"><strong>Hands-On Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html"><i class="fa fa-check"></i><b>6</b> Reproducibility and Report with R Markdown</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#key-tools-in-r-for-reproducibility-and-reporting"><i class="fa fa-check"></i><b>6.1</b> Key Tools in R for Reproducibility and Reporting</a></li>
+<li class="chapter" data-level="6.2" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#creating-reproducible-reports"><i class="fa fa-check"></i><b>6.2</b> Creating Reproducible Reports</a></li>
+<li class="chapter" data-level="6.3" data-path="reproducibility-and-report-with-r-markdown.html"><a href="reproducibility-and-report-with-r-markdown.html#going-beyond-shiny-for-interactive-reporting"><i class="fa fa-check"></i><b>6.3</b> Going Beyond: Shiny for Interactive Reporting</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-shiny.html"><a href="r-shiny.html"><i class="fa fa-check"></i><b>7</b> R Shiny</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="r-shiny.html"><a href="r-shiny.html#structure-of-a-shiny-app"><i class="fa fa-check"></i><b>7.1</b> Structure of a Shiny App</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="r-shiny.html"><a href="r-shiny.html#user-interfaceui"><i class="fa fa-check"></i><b>7.1.1</b> User Interface(ui)</a></li>
+<li class="chapter" data-level="7.1.2" data-path="r-shiny.html"><a href="r-shiny.html#server"><i class="fa fa-check"></i><b>7.1.2</b> Server</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="r-shiny.html"><a href="r-shiny.html#hands-on-exercise-4"><i class="fa fa-check"></i><b>7.2</b> <span style="color: green;"><strong>Hands-On Exercise</strong></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="building-r-packages.html"><a href="building-r-packages.html"><i class="fa fa-check"></i><b>8</b> Building R Packages</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="building-r-packages.html"><a href="building-r-packages.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="building-r-packages.html"><a href="building-r-packages.html#prerequisites"><i class="fa fa-check"></i><b>8.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="8.3" data-path="building-r-packages.html"><a href="building-r-packages.html#building-a-simple-r-package"><i class="fa fa-check"></i><b>8.3</b> Building a simple R package</a></li>
+<li class="chapter" data-level="8.4" data-path="building-r-packages.html"><a href="building-r-packages.html#making-a-new-r-project"><i class="fa fa-check"></i><b>8.4</b> Making A New R Project</a></li>
+<li class="chapter" data-level="8.5" data-path="building-r-packages.html"><a href="building-r-packages.html#adding-documentation"><i class="fa fa-check"></i><b>8.5</b> Adding Documentation</a></li>
+<li class="chapter" data-level="8.6" data-path="building-r-packages.html"><a href="building-r-packages.html#uploading-and-installing-from-github"><i class="fa fa-check"></i><b>8.6</b> Uploading and Installing from Github</a></li>
+<li class="chapter" data-level="8.7" data-path="building-r-packages.html"><a href="building-r-packages.html#hands-on-exercises-1"><i class="fa fa-check"></i><b>8.7</b> <span style="color: green;"><strong>Hands-on Exercises</strong></span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical Computing</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="general-statistics" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> General Statistics<a href="general-statistics.html#general-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this course, we will require the ecommerce data set that can be downloaded from <a href="https://www.kaggle.com/datasets/shrishtimanja/ecommerce-dataset-for-data-analysis/data">here</a>.</p>
+<p>Lets load the data set</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="general-statistics.html#cb163-1" tabindex="-1"></a>ecommerce <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/ecommerce.csv&quot;</span>)</span>
+<span id="cb163-2"><a href="general-statistics.html#cb163-2" tabindex="-1"></a></span>
+<span id="cb163-3"><a href="general-statistics.html#cb163-3" tabindex="-1"></a><span class="co"># First few rows of the data set </span></span>
+<span id="cb163-4"><a href="general-statistics.html#cb163-4" tabindex="-1"></a><span class="fu">head</span>(ecommerce)</span></code></pre></div>
+<pre><code>##      CID        TID Gender    Age.Group       Purchase.Date Product.Category
+## 1 943146 5876328741 Female        25-45 30/08/2023 20:27:08      Electronics
+## 2 180079 1018503182   Male        25-45 23/02/2024 09:33:46      Electronics
+## 3 337580 3814082218  Other 60 and above 06/03/2022 09:09:50         Clothing
+## 4 180333 1395204173  Other 60 and above 04/11/2020 04:41:57 Sports &amp; Fitness
+## 5 447553 8009390577   Male        18-25 31/05/2022 17:00:32 Sports &amp; Fitness
+## 6 200614 3994452858   Male        18-25 12/07/2021 15:10:27         Clothing
+##   Discount.Availed   Discount.Name Discount.Amount..INR. Gross.Amount
+## 1              Yes       FESTIVE50                 64.30      725.304
+## 2              Yes SEASONALOFFER21                175.19     4638.992
+## 3              Yes SEASONALOFFER21                211.54     1986.373
+## 4               No                                  0.00     5695.613
+## 5              Yes        WELCOME5                439.92     2292.651
+## 6              Yes       FESTIVE50                127.01     3649.397
+##   Net.Amount Purchase.Method  Location
+## 1    661.004     Credit Card Ahmedabad
+## 2   4463.802     Credit Card Bangalore
+## 3   1774.833     Credit Card     Delhi
+## 4   5695.613      Debit Card     Delhi
+## 5   1852.731     Credit Card     Delhi
+## 6   3522.387     Credit Card     Delhi</code></pre>
+<p>We will explore the fundamentals of statistics using the data set that is packed with real-life insights on customers and their purchasing behavior. At the end of this course unit you will be able to understand;</p>
+<ul>
+<li>Measure of spread and central tendency
+<ul>
+<li>Mean(the average)</li>
+<li>Mode</li>
+<li>Quartiles</li>
+<li>Range(IQR, maximum and minimum)</li>
+<li>Standard deviation and variance</li>
+</ul></li>
+<li>Data Visualizations
+<ul>
+<li>Relationship(scatter plot and heatmaps)</li>
+<li>Trend(line chart)</li>
+<li>Distribution(histograms and density plots)</li>
+<li>Comparison(bar charts)</li>
+<li>Composition (pie charts)</li>
+<li>Outliers (boxplots and violin plots)</li>
+</ul></li>
+<li>Inferential Statistics
+<ul>
+<li>Hypothesis testing</li>
+<li>T-tests( one sample, anova, chi-square)</li>
+</ul></li>
+</ul>
+<div id="measure-of-spread-and-central-tendency" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Measure of Spread and Central Tendency<a href="general-statistics.html#measure-of-spread-and-central-tendency" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Central tendency identifies the center or typical value of a data set. Measuring central tendency summarizes the data by identifying skewness, distribution and how the data is robust to outliers. Business calculate the central tendencies like average sales, median customer age to make informed decision-making.</p>
+<p>Here are some of the statistical concepts used to define central tendecy and spread;</p>
+<ol style="list-style-type: lower-alpha">
+<li>Mean</li>
+<li>Mode</li>
+<li>Quartiles(Median, upper and lower quartile)</li>
+<li>Range and IQR</li>
+<li>Variance and standard deviation</li>
+</ol>
+<p>a.<strong>Arithmetic mean</strong></p>
+<p>It is also referred to as the average. It is the sum of all values divided by the number of values in the set. R has a function <code>mean</code> to calculate the average.</p>
+<p>Here is the formula for mean; <span class="math display">\[\overline{x} ={ \sum^{n}_{i=1}x_i\over{n}}\]</span></p>
+<p>Where;</p>
+<ul>
+<li><span class="math inline">\(\overline{x}\)</span> is the mean</li>
+<li><span class="math inline">\(x_i\)</span> represent value at position <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(n\)</span> is the number(count) of values in a set</li>
+</ul>
+<p>Lets calculate the average net amount spent on the ecommerce store.</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="general-statistics.html#cb165-1" tabindex="-1"></a><span class="co"># Calculate the mean net amount</span></span>
+<span id="cb165-2"><a href="general-statistics.html#cb165-2" tabindex="-1"></a><span class="fu">mean</span>(ecommerce<span class="sc">$</span>Net.Amount)</span></code></pre></div>
+<pre><code>## [1] 2875.95</code></pre>
+<p>The average amount spent on the e-commerce store by all the customers was 2875.95 INR.</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><strong>Mode</strong></li>
+</ol>
+<p>The mode shows the most frequent value, thereby pinpoint the most popular categories in a data set. In the commerce data set we will find the most popular category and age group in the data set.</p>
+<p>Find the most popular category</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="general-statistics.html#cb167-1" tabindex="-1"></a><span class="co"># Calculate the mode for &#39;ProductCategory&#39;</span></span>
+<span id="cb167-2"><a href="general-statistics.html#cb167-2" tabindex="-1"></a><span class="fu">table</span>(ecommerce<span class="sc">$</span>Product.Category)</span></code></pre></div>
+<pre><code>## 
+## Beauty and Health             Books          Clothing       Electronics 
+##              8332              2762             10968             16574 
+##    Home &amp; Kitchen             Other          Pet Care  Sports &amp; Fitness 
+##              5489              2171              1618              5557 
+##      Toys &amp; Games 
+##              1529</code></pre>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="general-statistics.html#cb169-1" tabindex="-1"></a><span class="fu">which.max</span>(<span class="fu">table</span>(ecommerce<span class="sc">$</span>Product.Category))</span></code></pre></div>
+<pre><code>## Electronics 
+##           4</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li><strong>Quartiles</strong></li>
+</ol>
+<p>These are values that divide a data set into four equal parts, each representing the 25% of the data points. They help describe the spread of the data, providing insights into the distribution’s shape and spread.</p>
+<p>The quartiles are;</p>
+<ol style="list-style-type: lower-roman">
+<li><em>First Quartile(Q1)</em> - The <span class="math inline">\(25^{th}\)</span> percentile; the value below which 25% of the data falls. Also known as the lower quartile.</li>
+<li><em>Median(Q2)</em> - Also known as the second quartile; the middle of the data set, where half of the values are above and another half of the values are below.</li>
+<li><em>Third quartile(Q3)</em> - The <span class="math inline">\(75^{th}\)</span> percentile; the value below which 75% of the data falls.</li>
+</ol>
+<p>Using quartiles, we can calculate the <strong>Interquartile Range (IQR)</strong>, which measures the spread of the middle 50% of the data. <span class="math display">\[IQR = Q3 - Q1\]</span></p>
+<p><span style="color: orange;"><strong>Try it!</strong></span></p>
+<p>Lets put this into action; we will create a vector ages and calculate the quartiles.</p>
+<p><code>ages &lt;- c(21, 27, 55, 13, 87, 51, 33, 64, 40)</code></p>
+<p>Lets line the ages in an ascending order</p>
+<p><code>ages &lt;- c(13, 21, 27, 33, 40, 51, 55, 64, 87)</code></p>
+<p>Finding the;
+- median, will be middle value which is <code>40</code>.
+- Q1, is the median of the lower half which is</p>
+<pre><code>Q1  = (21 + 27)/2 = 24</code></pre>
+<ul>
+<li>Q3, is the median of the upper half which is</li>
+</ul>
+<pre><code>Q3 = (55 + 64)/2 = 59.5</code></pre>
+<p>Using R to calculate quartiles using the <code>quantile()</code> function;</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="general-statistics.html#cb173-1" tabindex="-1"></a>ages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">21</span>, <span class="dv">27</span>, <span class="dv">55</span>, <span class="dv">13</span>, <span class="dv">87</span>, <span class="dv">51</span>, <span class="dv">33</span>, <span class="dv">64</span>, <span class="dv">40</span>)</span>
+<span id="cb173-2"><a href="general-statistics.html#cb173-2" tabindex="-1"></a></span>
+<span id="cb173-3"><a href="general-statistics.html#cb173-3" tabindex="-1"></a><span class="co"># Calculate the quartiles </span></span>
+<span id="cb173-4"><a href="general-statistics.html#cb173-4" tabindex="-1"></a><span class="fu">quantile</span>(ages, <span class="at">type=</span><span class="dv">2</span>, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>))</span></code></pre></div>
+<pre><code>## 25% 50% 75% 
+##  27  40  55</code></pre>
+<ol start="4" style="list-style-type: lower-alpha">
+<li><strong>Range</strong></li>
+</ol>
+<p>To understand range, we will define, maximum and maximum values. The <strong>maximum</strong> value is the largest value in a set while the <strong>minimum</strong> is the smallest value in a set. <strong>Range</strong> is the difference between the maximum(largest value) and the minimum value in a set.</p>
+<p>Here is a formula for range; <span class="math display">\[Range = Max - Min\]</span></p>
+<p>Lets create a vector <code>ages</code> that defines the ages of different customers on a retail stores, find the maximum and minimum ages then calculate the range.</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="general-statistics.html#cb175-1" tabindex="-1"></a><span class="co"># Create vector ages</span></span>
+<span id="cb175-2"><a href="general-statistics.html#cb175-2" tabindex="-1"></a>ages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">21</span>, <span class="dv">27</span>, <span class="dv">55</span>, <span class="dv">13</span>, <span class="dv">87</span>, <span class="dv">51</span>, <span class="dv">33</span>, <span class="dv">64</span>)</span>
+<span id="cb175-3"><a href="general-statistics.html#cb175-3" tabindex="-1"></a></span>
+<span id="cb175-4"><a href="general-statistics.html#cb175-4" tabindex="-1"></a><span class="co"># Find the maximum</span></span>
+<span id="cb175-5"><a href="general-statistics.html#cb175-5" tabindex="-1"></a><span class="fu">max</span>(ages)</span></code></pre></div>
+<pre><code>## [1] 87</code></pre>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="general-statistics.html#cb177-1" tabindex="-1"></a><span class="co"># Find the minimum </span></span>
+<span id="cb177-2"><a href="general-statistics.html#cb177-2" tabindex="-1"></a><span class="fu">min</span>(ages)</span></code></pre></div>
+<pre><code>## [1] 13</code></pre>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="general-statistics.html#cb179-1" tabindex="-1"></a><span class="co"># Calculate the range </span></span>
+<span id="cb179-2"><a href="general-statistics.html#cb179-2" tabindex="-1"></a><span class="fu">diff</span>(<span class="fu">range</span>(ages))</span></code></pre></div>
+<pre><code>## [1] 74</code></pre>
+<p><span style="color: orange;"><strong>Try it!</strong></span></p>
+<p>Now its clear what range, lets get into the real-world scenario. We will find the maximum and minimum <code>Gross.Amount</code> spent on the ecommerce store. Finally, we calculate the range of amount spent by customers(<code>Gross.Amount</code>)</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="general-statistics.html#cb181-1" tabindex="-1"></a><span class="co"># Maximum amount spent by customers </span></span>
+<span id="cb181-2"><a href="general-statistics.html#cb181-2" tabindex="-1"></a><span class="fu">max</span>(ecommerce<span class="sc">$</span>Gross.Amount)</span></code></pre></div>
+<pre><code>## [1] 8394.826</code></pre>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="general-statistics.html#cb183-1" tabindex="-1"></a><span class="co"># Minimum amount spent by customers</span></span>
+<span id="cb183-2"><a href="general-statistics.html#cb183-2" tabindex="-1"></a><span class="fu">min</span>(ecommerce<span class="sc">$</span>Gross.Amount)</span></code></pre></div>
+<pre><code>## [1] 136.4543</code></pre>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="general-statistics.html#cb185-1" tabindex="-1"></a><span class="co"># Range </span></span>
+<span id="cb185-2"><a href="general-statistics.html#cb185-2" tabindex="-1"></a><span class="fu">diff</span>(<span class="fu">range</span>(ecommerce<span class="sc">$</span>Gross.Amount))</span></code></pre></div>
+<pre><code>## [1] 8258.371</code></pre>
+<ol start="5" style="list-style-type: lower-alpha">
+<li><strong>Standard deviation and Variance</strong></li>
+</ol>
+<p>Variance is statistical measure of dispersion that defines how spread the data points are in a data set in relation to the mean of the data set. Standard deviation is the measure of how data is clustered around the mean. It is simply defined to as the square root of variance.</p>
+<p>Here is the formula of variance; <span class="math display">\[\sigma = {\sum(x_i - \overline{x})^2 \over{n}}\]</span></p>
+<p>Where;</p>
+<ul>
+<li><span class="math inline">\(\sigma\)</span> is the variance</li>
+<li><span class="math inline">\(x_i\)</span> is the value</li>
+<li><span class="math inline">\(\overline{x}\)</span> is the population mean</li>
+<li><span class="math inline">\(n\)</span> is the value count</li>
+</ul>
+<p>Standard is simply the square root of variance, Here is the formula for standard deviation; <span class="math display">\[S = \sqrt{\sigma}\]</span> or <span class="math display">\[S = \sqrt{{\sum(x_i - \overline{x})^2 \over{n}}}\]</span></p>
+<p>Where <span class="math inline">\(S\)</span> is the standard deviation.</p>
+<p>Variance and standard deviation can be calculated in R environment using <code>var()</code> and <code>sd()</code> functions respectively.</p>
+<p>Lets create a vector of weights of the athletes in kilograms and calculate the variance and standard deviation.</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="general-statistics.html#cb187-1" tabindex="-1"></a><span class="co"># Sample vector </span></span>
+<span id="cb187-2"><a href="general-statistics.html#cb187-2" tabindex="-1"></a>athlete_weights <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">76</span>, <span class="dv">52</span>, <span class="dv">68</span>, <span class="dv">71</span>, <span class="dv">63</span>, <span class="dv">58</span>, <span class="dv">52</span>, <span class="dv">85</span>, <span class="dv">96</span>)</span>
+<span id="cb187-3"><a href="general-statistics.html#cb187-3" tabindex="-1"></a></span>
+<span id="cb187-4"><a href="general-statistics.html#cb187-4" tabindex="-1"></a><span class="co"># Calculate variance</span></span>
+<span id="cb187-5"><a href="general-statistics.html#cb187-5" tabindex="-1"></a><span class="fu">var</span>(athlete_weights)</span></code></pre></div>
+<pre><code>## [1] 216.7111</code></pre>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="general-statistics.html#cb189-1" tabindex="-1"></a><span class="co"># Calculate the standard deviation</span></span>
+<span id="cb189-2"><a href="general-statistics.html#cb189-2" tabindex="-1"></a><span class="fu">sd</span>(athlete_weights)</span></code></pre></div>
+<pre><code>## [1] 14.72111</code></pre>
+<p>Lets put into real world practice and calculate variance and standard deviation of net amount spent on the ecommerce store.</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="general-statistics.html#cb191-1" tabindex="-1"></a><span class="co"># Variance</span></span>
+<span id="cb191-2"><a href="general-statistics.html#cb191-2" tabindex="-1"></a><span class="fu">var</span>(ecommerce<span class="sc">$</span>Net.Amount)</span></code></pre></div>
+<pre><code>## [1] 2979517</code></pre>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="general-statistics.html#cb193-1" tabindex="-1"></a><span class="co"># Standard deviation</span></span>
+<span id="cb193-2"><a href="general-statistics.html#cb193-2" tabindex="-1"></a><span class="fu">sd</span>(ecommerce<span class="sc">$</span>Net.Amount)</span></code></pre></div>
+<pre><code>## [1] 1726.128</code></pre>
+<p><span style="color: green;"><strong>Practical Exercise</strong></span></p>
+<p>Using the ecommerce data set provided at the beginning of the course, calculate the following metrics for the gross amount with R;</p>
+<ol style="list-style-type: decimal">
+<li>Mean</li>
+<li>Median and IQR</li>
+<li>Maximum, minimum and range</li>
+<li>Standard deviation and variance.</li>
+</ol>
+</div>
+<div id="data-visualization-1" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Data Visualization<a href="general-statistics.html#data-visualization-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Data visualization is the process of using visual elements like chart, graphs or maps to represent data in a way that is easier to understand.</p>
+<p>Luckily, R has a package, <code>ggplot2</code>, specifically designed to create charts and graphs. The package is said to implement the “Grammar of Graphics” that is a conceptual framework for creating graphs by Leland Wilkinson.</p>
+<p>The package can be installed by;</p>
+<pre><code>install.packages(&quot;ggplot2&quot;)</code></pre>
+<p>and once the package is installed it is loaded by;</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="general-statistics.html#cb196-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<p>Lets create simple charts with the <code>ggplot2</code> package.</p>
+<ol style="list-style-type: lower-alpha">
+<li><strong>Scatter plots</strong></li>
+</ol>
+<p>Scatter plot is used to show the numerical relationship between two or more. Lets create a simple plot.</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="general-statistics.html#cb197-1" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb197-2"><a href="general-statistics.html#cb197-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb197-3"><a href="general-statistics.html#cb197-3" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
+<span id="cb197-4"><a href="general-statistics.html#cb197-4" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb197-5"><a href="general-statistics.html#cb197-5" tabindex="-1"></a>)</span>
+<span id="cb197-6"><a href="general-statistics.html#cb197-6" tabindex="-1"></a></span>
+<span id="cb197-7"><a href="general-statistics.html#cb197-7" tabindex="-1"></a><span class="co"># Creating a scatter plot</span></span>
+<span id="cb197-8"><a href="general-statistics.html#cb197-8" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="co"># data</span></span>
+<span id="cb197-9"><a href="general-statistics.html#cb197-9" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> <span class="co">#aesthetics</span></span>
+<span id="cb197-10"><a href="general-statistics.html#cb197-10" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co">#geometrics</span></span>
+<span id="cb197-11"><a href="general-statistics.html#cb197-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatter Plot Example&quot;</span>, <span class="at">x =</span> <span class="st">&quot;X Values&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Y Values&quot;</span>) <span class="sc">+</span></span>
+<span id="cb197-12"><a href="general-statistics.html#cb197-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<p><span style="color: orange;"><strong>Try it!</strong></span></p>
+<p>Lets make it more interesting by exploring the real world scenario where we will visualize the relationship between Discount and the Net Amount on the ecommerce store.</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="general-statistics.html#cb198-1" tabindex="-1"></a><span class="co"># Creating a scatter plot</span></span>
+<span id="cb198-2"><a href="general-statistics.html#cb198-2" tabindex="-1"></a><span class="fu">ggplot</span>(ecommerce[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, ], <span class="co"># first 100 rows of the data</span></span>
+<span id="cb198-3"><a href="general-statistics.html#cb198-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Net.Amount, <span class="at">y =</span> Discount.Amount..INR.)) <span class="sc">+</span> <span class="co">#aesthetics</span></span>
+<span id="cb198-4"><a href="general-statistics.html#cb198-4" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co">#geometrics</span></span>
+<span id="cb198-5"><a href="general-statistics.html#cb198-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Relationship between Net Amount and the Discount&quot;</span>, </span>
+<span id="cb198-6"><a href="general-statistics.html#cb198-6" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Net Amount&quot;</span>, </span>
+<span id="cb198-7"><a href="general-statistics.html#cb198-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Discount&quot;</span>) <span class="sc">+</span></span>
+<span id="cb198-8"><a href="general-statistics.html#cb198-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<p>The scatter chart above shows that there is no clear relationship between the Net Amount spent and the discount offered since at every spending(low, medium or high) had low or high discount. High spending did not necessarily guarantee low or high discount.</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><strong>Line Chart</strong></li>
+</ol>
+<p>Line Chart is used to show trend(Growth or fall over time). Let create a simple line chart to show this;</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="general-statistics.html#cb199-1" tabindex="-1"></a><span class="co"># Sample data </span></span>
+<span id="cb199-2"><a href="general-statistics.html#cb199-2" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;2023-10-01&quot;</span>, <span class="st">&quot;2023-10-05&quot;</span>, <span class="st">&quot;2023-10-10&quot;</span>, <span class="st">&quot;2023-10-15&quot;</span>, <span class="st">&quot;2023-10-20&quot;</span>, <span class="st">&quot;2023-10-25&quot;</span>, <span class="st">&quot;2023-10-30&quot;</span>, <span class="st">&quot;2023-11-04&quot;</span>, <span class="st">&quot;2023-11-09&quot;</span>, <span class="st">&quot;2023-11-14&quot;</span>)</span>
+<span id="cb199-3"><a href="general-statistics.html#cb199-3" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">75</span>, <span class="dv">82</span>, <span class="dv">88</span>, <span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">87</span>, <span class="dv">92</span>, <span class="dv">95</span>, <span class="dv">98</span>, <span class="dv">100</span>)</span>
+<span id="cb199-4"><a href="general-statistics.html#cb199-4" tabindex="-1"></a></span>
+<span id="cb199-5"><a href="general-statistics.html#cb199-5" tabindex="-1"></a><span class="co"># Create a data frame </span></span>
+<span id="cb199-6"><a href="general-statistics.html#cb199-6" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb199-7"><a href="general-statistics.html#cb199-7" tabindex="-1"></a>  <span class="at">date =</span> <span class="fu">as.Date</span>(dates),</span>
+<span id="cb199-8"><a href="general-statistics.html#cb199-8" tabindex="-1"></a>  <span class="at">scores =</span> scores</span>
+<span id="cb199-9"><a href="general-statistics.html#cb199-9" tabindex="-1"></a>)</span>
+<span id="cb199-10"><a href="general-statistics.html#cb199-10" tabindex="-1"></a></span>
+<span id="cb199-11"><a href="general-statistics.html#cb199-11" tabindex="-1"></a><span class="co"># Plot a scatter plot </span></span>
+<span id="cb199-12"><a href="general-statistics.html#cb199-12" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="co"># data</span></span>
+<span id="cb199-13"><a href="general-statistics.html#cb199-13" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>scores)) <span class="sc">+</span> </span>
+<span id="cb199-14"><a href="general-statistics.html#cb199-14" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb199-15"><a href="general-statistics.html#cb199-15" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb199-16"><a href="general-statistics.html#cb199-16" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Scores progression from October to November&quot;</span>,</span>
+<span id="cb199-17"><a href="general-statistics.html#cb199-17" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Date&quot;</span>,</span>
+<span id="cb199-18"><a href="general-statistics.html#cb199-18" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Scores&quot;</span></span>
+<span id="cb199-19"><a href="general-statistics.html#cb199-19" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb199-20"><a href="general-statistics.html#cb199-20" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<p>There has a been a gradual increase of scores from October to November.</p>
+<p><span style="color: orange;"><strong>Try it!</strong></span></p>
+<p>Lets put this into a real world scenario. We will plot the Gross Amount spent by Customers over the years at the ecommerce store.</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="general-statistics.html#cb200-1" tabindex="-1"></a><span class="co"># Convert the purchase date to date type </span></span>
+<span id="cb200-2"><a href="general-statistics.html#cb200-2" tabindex="-1"></a>ecommerce<span class="sc">$</span>Purchase.Date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(ecommerce<span class="sc">$</span>Purchase.Date)</span>
+<span id="cb200-3"><a href="general-statistics.html#cb200-3" tabindex="-1"></a></span>
+<span id="cb200-4"><a href="general-statistics.html#cb200-4" tabindex="-1"></a><span class="co"># Plot a scatter plot </span></span>
+<span id="cb200-5"><a href="general-statistics.html#cb200-5" tabindex="-1"></a><span class="fu">ggplot</span>(ecommerce[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, ], <span class="co"># data</span></span>
+<span id="cb200-6"><a href="general-statistics.html#cb200-6" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>Purchase.Date, <span class="at">y=</span>Gross.Amount)) <span class="sc">+</span> </span>
+<span id="cb200-7"><a href="general-statistics.html#cb200-7" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb200-8"><a href="general-statistics.html#cb200-8" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb200-9"><a href="general-statistics.html#cb200-9" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Gross Amount spent over time&quot;</span>,</span>
+<span id="cb200-10"><a href="general-statistics.html#cb200-10" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Purchase Date&quot;</span>,</span>
+<span id="cb200-11"><a href="general-statistics.html#cb200-11" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Gross Amount&quot;</span></span>
+<span id="cb200-12"><a href="general-statistics.html#cb200-12" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb200-13"><a href="general-statistics.html#cb200-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<p>There has been gradual spikes of rise and fall of the amount spent on the store.</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li><strong>Histograms and Density Plots</strong></li>
+</ol>
+<p>Histograms and Density plots are used to show the distribution of continuous variables. Histogram is visually similar to the bar chart however it is used show frequency and distribution across a list-like data set(vectors, lists, sets, arrays, etc) that stores continuous numeric values. The count of observation within a certain range of values are displayed.</p>
+<p>Lets create a vector of random 100 ages and plot the data to a histogram.</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="general-statistics.html#cb201-1" tabindex="-1"></a><span class="co"># Generate random 1000 ages between 0 and 100</span></span>
+<span id="cb201-2"><a href="general-statistics.html#cb201-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb201-3"><a href="general-statistics.html#cb201-3" tabindex="-1"></a>ages <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">1000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb201-4"><a href="general-statistics.html#cb201-4" tabindex="-1"></a></span>
+<span id="cb201-5"><a href="general-statistics.html#cb201-5" tabindex="-1"></a><span class="co"># Create a data frame to use with ggplot</span></span>
+<span id="cb201-6"><a href="general-statistics.html#cb201-6" tabindex="-1"></a>age_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Age =</span> ages)</span>
+<span id="cb201-7"><a href="general-statistics.html#cb201-7" tabindex="-1"></a></span>
+<span id="cb201-8"><a href="general-statistics.html#cb201-8" tabindex="-1"></a><span class="co"># PLOTTING</span></span>
+<span id="cb201-9"><a href="general-statistics.html#cb201-9" tabindex="-1"></a><span class="co"># Create the histogram using ggplot</span></span>
+<span id="cb201-10"><a href="general-statistics.html#cb201-10" tabindex="-1"></a><span class="fu">ggplot</span>(age_data, <span class="fu">aes</span>(<span class="at">x =</span> Age)) <span class="sc">+</span></span>
+<span id="cb201-11"><a href="general-statistics.html#cb201-11" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>, <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb201-12"><a href="general-statistics.html#cb201-12" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb201-13"><a href="general-statistics.html#cb201-13" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Histogram of Randomly Generated Ages&quot;</span>, </span>
+<span id="cb201-14"><a href="general-statistics.html#cb201-14" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Age&quot;</span>, </span>
+<span id="cb201-15"><a href="general-statistics.html#cb201-15" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb201-16"><a href="general-statistics.html#cb201-16" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<p>The bins are groups of ages ranging 5 years</p>
+<p><span style="color: orange;"><strong>Try it!</strong></span></p>
+<p>Lets put his into action and plot the distribution of Discount offered on the ecommerce store</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="general-statistics.html#cb202-1" tabindex="-1"></a><span class="co"># Create the histogram using ggplot</span></span>
+<span id="cb202-2"><a href="general-statistics.html#cb202-2" tabindex="-1"></a><span class="fu">ggplot</span>(ecommerce, </span>
+<span id="cb202-3"><a href="general-statistics.html#cb202-3" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Discount.Amount..INR.)) <span class="sc">+</span></span>
+<span id="cb202-4"><a href="general-statistics.html#cb202-4" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb202-5"><a href="general-statistics.html#cb202-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb202-6"><a href="general-statistics.html#cb202-6" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Histogram of Discount offered&quot;</span>, </span>
+<span id="cb202-7"><a href="general-statistics.html#cb202-7" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Discount&quot;</span>, </span>
+<span id="cb202-8"><a href="general-statistics.html#cb202-8" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb202-9"><a href="general-statistics.html#cb202-9" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<p>The distribution is right skewed and most of the customers in the store were offered very low discount for their purchases.</p>
+<p><strong>Check it later and speak about density plots</strong></p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li><strong>Bar Charts</strong></li>
+</ol>
+<p>Bar charts are used to represent both categorical and numeric data in form of rectangular bars. The length/height of each category represents its numeric value. It may corresponds to either length, count, age or any other numerical value. Bar charts are used when;-</p>
+<ol style="list-style-type: lower-roman">
+<li>Comparing categorical data</li>
+<li>Visualizing summarized data for instance aggregated sum, average or any other summary statistics.</li>
+<li>Showing frequency or count for instance representing the number of products sold per each category.</li>
+<li>Ranking data. Bar charts can effectively represents ranks especially in descending/ascending order for instance ranking the life expectancy of different countries.</li>
+<li>Other type of complex bar charts like stacked bar charts can be used to compare part-to-whole relationships.</li>
+</ol>
+<p>There are many more uses of bar charts however there are some use cases where bar charts are not preferred like when working with continuous data, scatter and line charts are more befitting. Also, bar charts are not appropriate where data has too many categories, heatmaps will do better.</p>
+<p>To create a simple bar chart using <code>ggplot2</code>, we use <code>geom_bar</code> to define that its a bar chart.</p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="general-statistics.html#cb203-1" tabindex="-1"></a><span class="co"># Sample data</span></span>
+<span id="cb203-2"><a href="general-statistics.html#cb203-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb203-3"><a href="general-statistics.html#cb203-3" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>),</span>
+<span id="cb203-4"><a href="general-statistics.html#cb203-4" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">17</span>, <span class="dv">35</span>, <span class="dv">10</span>)</span>
+<span id="cb203-5"><a href="general-statistics.html#cb203-5" tabindex="-1"></a>)</span>
+<span id="cb203-6"><a href="general-statistics.html#cb203-6" tabindex="-1"></a></span>
+<span id="cb203-7"><a href="general-statistics.html#cb203-7" tabindex="-1"></a><span class="do">## The data set above will be used to create a bar chart</span></span>
+<span id="cb203-8"><a href="general-statistics.html#cb203-8" tabindex="-1"></a><span class="co"># Creating a bar chart</span></span>
+<span id="cb203-9"><a href="general-statistics.html#cb203-9" tabindex="-1"></a><span class="fu">ggplot</span>(df, </span>
+<span id="cb203-10"><a href="general-statistics.html#cb203-10" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> category, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb203-11"><a href="general-statistics.html#cb203-11" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb203-12"><a href="general-statistics.html#cb203-12" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb203-13"><a href="general-statistics.html#cb203-13" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Value by Category&quot;</span>, </span>
+<span id="cb203-14"><a href="general-statistics.html#cb203-14" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Category&quot;</span>, </span>
+<span id="cb203-15"><a href="general-statistics.html#cb203-15" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Value&quot;</span>) <span class="sc">+</span></span>
+<span id="cb203-16"><a href="general-statistics.html#cb203-16" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<p>From the bar chart above, Category “C” has the largest value while category “D” has the lowest value.</p>
+<p><span style="color: orange;"><strong>Try it!</strong></span></p>
+<p>Lets create a bar chart of a real world scenario. We will calculate the average Gross amount spent by different age groups in the ecommerce store.</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="general-statistics.html#cb204-1" tabindex="-1"></a><span class="fu">library</span>(plyr)</span>
+<span id="cb204-2"><a href="general-statistics.html#cb204-2" tabindex="-1"></a></span>
+<span id="cb204-3"><a href="general-statistics.html#cb204-3" tabindex="-1"></a><span class="co"># Aggregate by mean</span></span>
+<span id="cb204-4"><a href="general-statistics.html#cb204-4" tabindex="-1"></a>PurchasebyAge <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(Gross.Amount <span class="sc">~</span> Age.Group,</span>
+<span id="cb204-5"><a href="general-statistics.html#cb204-5" tabindex="-1"></a>                           <span class="at">data =</span> ecommerce,</span>
+<span id="cb204-6"><a href="general-statistics.html#cb204-6" tabindex="-1"></a>                           <span class="at">FUN =</span> mean</span>
+<span id="cb204-7"><a href="general-statistics.html#cb204-7" tabindex="-1"></a>                           )</span>
+<span id="cb204-8"><a href="general-statistics.html#cb204-8" tabindex="-1"></a></span>
+<span id="cb204-9"><a href="general-statistics.html#cb204-9" tabindex="-1"></a><span class="co"># Plot a bar chart</span></span>
+<span id="cb204-10"><a href="general-statistics.html#cb204-10" tabindex="-1"></a><span class="fu">ggplot</span>(PurchasebyAge, </span>
+<span id="cb204-11"><a href="general-statistics.html#cb204-11" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Age.Group, <span class="at">y =</span> Gross.Amount)) <span class="sc">+</span></span>
+<span id="cb204-12"><a href="general-statistics.html#cb204-12" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="at">color=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb204-13"><a href="general-statistics.html#cb204-13" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb204-14"><a href="general-statistics.html#cb204-14" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Average Gross Amount by Age Group&quot;</span>, </span>
+<span id="cb204-15"><a href="general-statistics.html#cb204-15" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Age Group&quot;</span>, </span>
+<span id="cb204-16"><a href="general-statistics.html#cb204-16" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Average Gross Amount&quot;</span>) <span class="sc">+</span></span>
+<span id="cb204-17"><a href="general-statistics.html#cb204-17" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+<p>All the age group had an almost equal average spending on the ecommerce store.</p>
+<p>What if we calculated the total spending for each age group? That would be interesting! Lets calculate and plot a bar chart to represent that.</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="general-statistics.html#cb205-1" tabindex="-1"></a><span class="co"># Aggregate by sum</span></span>
+<span id="cb205-2"><a href="general-statistics.html#cb205-2" tabindex="-1"></a>PurchasebyAge <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(Gross.Amount <span class="sc">~</span> Age.Group,</span>
+<span id="cb205-3"><a href="general-statistics.html#cb205-3" tabindex="-1"></a>                           <span class="at">data =</span> ecommerce,</span>
+<span id="cb205-4"><a href="general-statistics.html#cb205-4" tabindex="-1"></a>                           <span class="at">FUN =</span> sum</span>
+<span id="cb205-5"><a href="general-statistics.html#cb205-5" tabindex="-1"></a>                           )</span>
+<span id="cb205-6"><a href="general-statistics.html#cb205-6" tabindex="-1"></a></span>
+<span id="cb205-7"><a href="general-statistics.html#cb205-7" tabindex="-1"></a><span class="co"># Plot a bar chart</span></span>
+<span id="cb205-8"><a href="general-statistics.html#cb205-8" tabindex="-1"></a><span class="fu">ggplot</span>(PurchasebyAge, </span>
+<span id="cb205-9"><a href="general-statistics.html#cb205-9" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Age.Group, <span class="at">y =</span> Gross.Amount)) <span class="sc">+</span></span>
+<span id="cb205-10"><a href="general-statistics.html#cb205-10" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="at">color=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb205-11"><a href="general-statistics.html#cb205-11" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb205-12"><a href="general-statistics.html#cb205-12" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Total Gross Amount by Age Group&quot;</span>, </span>
+<span id="cb205-13"><a href="general-statistics.html#cb205-13" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Age Group&quot;</span>, </span>
+<span id="cb205-14"><a href="general-statistics.html#cb205-14" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Total Gross Amount&quot;</span>) <span class="sc">+</span></span>
+<span id="cb205-15"><a href="general-statistics.html#cb205-15" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+<p>Age 25 - 45 had the highest total spending in the ecommerce store while age of 60 and above had the least total spending.</p>
+<ol start="6" style="list-style-type: lower-alpha">
+<li><strong>Boxplots and Violin Plots</strong></li>
+</ol>
+<p>Box plot is a type of chart that uses boxes and lines to show distributions of one or more groups of a continuous numeric data. They provide a high-level information at a glance for instance the data symmetry, skew and variance. They can also be used to show outliers within a data set. This is the only chart that can effectively give the measure of spread and central tendency(median, quartiles and range).</p>
+<p><span style="color: orange;"><strong>Try it!</strong></span></p>
+<p>We will plot a boxplot of the Net Amount spent on the ecommerce store.</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="general-statistics.html#cb206-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb206-2"><a href="general-statistics.html#cb206-2" tabindex="-1"></a></span>
+<span id="cb206-3"><a href="general-statistics.html#cb206-3" tabindex="-1"></a><span class="co"># Plot a boxplot</span></span>
+<span id="cb206-4"><a href="general-statistics.html#cb206-4" tabindex="-1"></a><span class="fu">ggplot</span>(ecommerce, <span class="fu">aes</span>(<span class="at">y=</span>Net.Amount))<span class="sc">+</span></span>
+<span id="cb206-5"><a href="general-statistics.html#cb206-5" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill=</span><span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
+<p>The upper and lower boundaries represents the upper(Q3) and lower(Q1) quartiles respectively. In out case the upper quartile is about 4200INR and the lower quartile is approximately 1500. The median is represented by the line cutting through the box, whereby in our case is approximately 2800 INR. The maximum value is the uppermost point of the boxplot which is approximately 8300INR. Finally, the minimum is the bottom of the plot which is approximately 350INR.</p>
+<p><span style="color: green;"><strong>Practical Exercise</strong></span></p>
+<p>To enhance your understanding in basic data visualizations, you will be required to use the inbuilt diamonds data set and follow the instructions below.</p>
+<ol style="list-style-type: lower-roman">
+<li>Plot a bar chart to show the count of diamonds by <code>cut</code> quality.</li>
+<li>Generate a scatter plot to show the relationship between <code>carat</code> and <code>price</code>.</li>
+<li>Plot a histogram of the <code>price</code> of diamonds.</li>
+<li>Create a boxplot to compare the price distributions across different different diamond <code>color</code> categories.</li>
+<li>Visualize the male and female passengers in each class.</li>
+</ol>
+<p><strong>Hint: </strong> The titanic data set is loaded as below</p>
+<pre><code>data(&quot;diamonds&quot;)</code></pre>
+</div>
+<div id="inferential-statistics" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Inferential Statistics<a href="general-statistics.html#inferential-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-to-hypothesis-testing" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Introduction to Hypothesis Testing<a href="general-statistics.html#introduction-to-hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="concept-of-hypothesis-testing" class="section level4 hasAnchor" number="4.3.1.1">
+<h4><span class="header-section-number">4.3.1.1</span> Concept of Hypothesis Testing<a href="general-statistics.html#concept-of-hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Hypothesis testing is a type of statistical analysis that is used to make assumptions of a population based on a sample of data. It is particularly used to find the relationship between two variables(populations). A real life example of hypothesis testing is that a teacher may assume that 60% of the students come from a middle-class family. There are two types of hypothesis;</p>
+<ul>
+<li>Null hypothesis(<span class="math inline">\(H_0\)</span>)</li>
+<li>Alternate hypothesis (<span class="math inline">\(H_1\)</span> or <span class="math inline">\(H_a\)</span>)</li>
+</ul>
+<p><strong>Null hypothesis</strong> is states that there is no effect or no difference(<span class="math inline">\(\mu = 0\)</span>). For instance there is no effect of standards of living to college admissions. <strong>Alternate hypothesis</strong> is the opposite and contradicts the null hypothesis. It provide evidence for what the statistician is trying to find(<span class="math inline">\(\mu \neq 0\)</span>). In this case, the standards of living have an effect on college admissions.</p>
+<p>The important aspects before conducting hypothesis testing are;-</p>
+<ul>
+<li><em>Significance level.</em> It is the probability of rejecting the null hypothesis when it is actually true.</li>
+<li><em>P-Value</em> is the probability of obtaining a test statistic at least as extreme as the one observed, given the null hypothesis is true. Most hypothesis testing projects are set at 0.05. Less than 0.05(or the set value) indicates the null the test is statistically significant and the null hypothesis should be rejected. Otherwise, the test is statistically insignificant and the null hypothesis is not rejected.</li>
+<li><em>Test statistic</em> also called T-statistic is a standardized value calcluated during a hypothesis test. It cab z-test or a t-test.
+-<em>Decision rule</em> is based on the calculated p-value and the significant level. In a hypothesis test where the significant and the p-value is 0.03444 the null hypothesis is not rejected.</li>
+</ul>
+<p>Now that you are familiar with the hypothesis testing aspects, take the following steps to perform hypothesis testing;-</p>
+<ol style="list-style-type: lower-roman">
+<li>Formulating the hypothesis by defining the null and alternate hypothesis.</li>
+<li>Collect and analyze the data.</li>
+<li>Choose a significant level(<span class="math inline">\(a\)</span>) and calculate the p-value.</li>
+<li>Make a decision by comparing the p-value to the significant level.</li>
+<li>Conclude your analysis results.</li>
+</ol>
+</div>
+<div id="t-tests" class="section level4 hasAnchor" number="4.3.1.2">
+<h4><span class="header-section-number">4.3.1.2</span> T-tests<a href="general-statistics.html#t-tests" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><em>One-Sample t-test</em></li>
+</ul>
+<p>One sample t-test is a statistical method used to find if the mean of a sample is different from the population(or preassumed) mean.</p>
+<p>It is based on the t-distribution(most observations fall close to the mean, and the rest of the observations make up the tails on either side) and is commonly used when dealing with small sample sizes. One sample t-test is especially performed where the population standard deviation is unknown.</p>
+<p>Below is the formula for one sample t-test
+<span class="math display">\[t={{\overline{X}-\mu}\over s / \sqrt{n}}\]</span></p>
+<p>where;</p>
+<ol style="list-style-type: lower-roman">
+<li><span class="math inline">\(t\)</span>: the one sample t-test value. t-test statistic</li>
+<li><span class="math inline">\(n\)</span>: the number of the observations in the sample</li>
+<li><span class="math inline">\(\overline{X}\)</span>: is the sample mean</li>
+<li><span class="math inline">\(s\)</span>: standard deviation of the sample</li>
+<li><span class="math inline">\(\mu\)</span>: Hypothesized population mean</li>
+</ol>
+<p>The result <span class="math inline">\(t\)</span>, simply measures how many standard errors the sample mean is away from the hypothesized population mean.</p>
+<p>Before conducting t-test, there is a need to establish the null(H0) and alternate hypothesis(Ha) where;</p>
+<ul>
+<li><em>Null Hypothesis(H0)</em>: There is no significant difference between the sample mean and the population(hypothesized) mean.</li>
+<li><em>ALternate Hypothesis(Ha)</em>: There is a significant difference between the sample mean and the population mean.</li>
+</ul>
+<p>P-value is the probability value that tells you how likely is that your data could have occurred under null hypothesis. In our case a p-value of below 0.05 is considered to be statistically significant and the null value is rejected. The vice versa is true</p>
+<p>Lets perform a t-test using R;</p>
+<p>We will generate sample data</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="general-statistics.html#cb208-1" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb208-2"><a href="general-statistics.html#cb208-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb208-3"><a href="general-statistics.html#cb208-3" tabindex="-1"></a></span>
+<span id="cb208-4"><a href="general-statistics.html#cb208-4" tabindex="-1"></a><span class="co"># Generate random student marks (out of 100)</span></span>
+<span id="cb208-5"><a href="general-statistics.html#cb208-5" tabindex="-1"></a>student_marks <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> <span class="dv">65</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
+<span id="cb208-6"><a href="general-statistics.html#cb208-6" tabindex="-1"></a></span>
+<span id="cb208-7"><a href="general-statistics.html#cb208-7" tabindex="-1"></a><span class="co"># Display the first few marks</span></span>
+<span id="cb208-8"><a href="general-statistics.html#cb208-8" tabindex="-1"></a><span class="fu">head</span>(student_marks)</span></code></pre></div>
+<pre><code>## [1] 59.39524 62.69823 80.58708 65.70508 66.29288 82.15065</code></pre>
+<p>Perform the t-test</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="general-statistics.html#cb210-1" tabindex="-1"></a><span class="co"># Conduct one-sample t-test</span></span>
+<span id="cb210-2"><a href="general-statistics.html#cb210-2" tabindex="-1"></a>t_test_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(student_marks, <span class="at">mu =</span> <span class="dv">70</span>)</span>
+<span id="cb210-3"><a href="general-statistics.html#cb210-3" tabindex="-1"></a></span>
+<span id="cb210-4"><a href="general-statistics.html#cb210-4" tabindex="-1"></a><span class="co"># Display the t-test result</span></span>
+<span id="cb210-5"><a href="general-statistics.html#cb210-5" tabindex="-1"></a><span class="fu">print</span>(t_test_result)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  student_marks
+## t = -3.0546, df = 29, p-value = 0.004797
+## alternative hypothesis: true mean is not equal to 70
+## 95 percent confidence interval:
+##  60.86573 68.19219
+## sample estimates:
+## mean of x 
+##  64.52896</code></pre>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Conduct one sample t-test on the sepal length of the setosa iris. The pre-assumed mean is 5.84 units.</p>
+<ul>
+<li><em>Two-Sample t-test</em></li>
+</ul>
+<p>Unlike one sample t-test where a sample population is tested against a pre-assumed mean, the Tow-sample t-test determines if there is a significant difference between the means of two independent populations.</p>
+<p>The practical application of two-sample t-test can be when comparing the test scores of two classes. This helps the statistician to understand if one class did better than the other one or it’s just a matter of luck.</p>
+<p>These are the prerequisites before conducting a two-sample t-test;</p>
+<ol style="list-style-type: lower-roman">
+<li>The groups contain separate data with a similar distribution.</li>
+<li>The two populations have a normal(typical bell-curve) distribution.</li>
+<li>The two sample populations have a similar variations</li>
+</ol>
+<p>The two sample t-test is calculated by;
+<img src="images/two-sample-ttest.jpg" /></p>
+<p>Where;</p>
+<ul>
+<li><span class="math inline">\(\overline{x}_1\)</span> and <span class="math inline">\(\overline{x}_2\)</span> are the mean of the first sample and the second sample respectively</li>
+<li><span class="math inline">\(s_{1}\)</span> and <span class="math inline">\(s_{2}\)</span> are the standard deviation of sample 1 and sample 2 respectively</li>
+<li><span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> are the sample sizes of the first and second sample respectively.</li>
+</ul>
+<p>Let create a random population of student scores for two classes and perform two-sample t-test in R;</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="general-statistics.html#cb212-1" tabindex="-1"></a><span class="co"># Generate the population sample</span></span>
+<span id="cb212-2"><a href="general-statistics.html#cb212-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb212-3"><a href="general-statistics.html#cb212-3" tabindex="-1"></a>group_A_scores <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="at">mean =</span> <span class="dv">75</span>, <span class="at">sd =</span> <span class="dv">8</span>)  <span class="co"># Group A</span></span>
+<span id="cb212-4"><a href="general-statistics.html#cb212-4" tabindex="-1"></a>group_B_scores <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">25</span>, <span class="at">mean =</span> <span class="dv">80</span>, <span class="at">sd =</span> <span class="dv">10</span>)  <span class="co"># Group B</span></span>
+<span id="cb212-5"><a href="general-statistics.html#cb212-5" tabindex="-1"></a></span>
+<span id="cb212-6"><a href="general-statistics.html#cb212-6" tabindex="-1"></a><span class="co"># Display the first few scores of each group</span></span>
+<span id="cb212-7"><a href="general-statistics.html#cb212-7" tabindex="-1"></a><span class="fu">head</span>(group_A_scores)</span></code></pre></div>
+<pre><code>## [1] 70.51619 73.15858 87.46967 75.56407 76.03430 88.72052</code></pre>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="general-statistics.html#cb214-1" tabindex="-1"></a><span class="fu">head</span>(group_B_scores)</span></code></pre></div>
+<pre><code>## [1] 63.13307 88.37787 81.53373 68.61863 92.53815 84.26464</code></pre>
+<p>Performing the two sample t-test. Lets set the confidence level to 95%(0.95)</p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="general-statistics.html#cb216-1" tabindex="-1"></a>ttest_result <span class="ot">=</span> <span class="fu">t.test</span>(group_A_scores, group_B_scores, </span>
+<span id="cb216-2"><a href="general-statistics.html#cb216-2" tabindex="-1"></a>                      <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">paired =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb216-3"><a href="general-statistics.html#cb216-3" tabindex="-1"></a>                      <span class="at">var.equal =</span> <span class="cn">FALSE</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb216-4"><a href="general-statistics.html#cb216-4" tabindex="-1"></a></span>
+<span id="cb216-5"><a href="general-statistics.html#cb216-5" tabindex="-1"></a>ttest_result</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  group_A_scores and group_B_scores
+## t = -2.6403, df = 46.312, p-value = 0.01125
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -11.080984  -1.495049
+## sample estimates:
+## mean of x mean of y 
+##  74.73336  81.02137</code></pre>
+<ul>
+<li><strong>t-value = -2.6403</strong>: This indicates the difference between the means of the two groups, in terms of standard errors. A higher absolute value suggests a larger difference.</li>
+<li><strong>Degrees of freedom (df) = 46.312</strong>: This reflects the sample size and variability in the data.</li>
+<li><strong>p-value = 0.01125</strong>: Since the p-value is less than 0.05, we reject the null hypothesis. This suggests that the difference in means between Group A and Group B is statistically significant.</li>
+<li><strong>95% confidence interval: (-11.08, -1.50)</strong>: This indicates that we are 95% confident that the true difference in means lies between -11.08 and -1.50.</li>
+<li><strong>Mean of x (Group A) = 74.73, Mean of y (Group B) = 81.02</strong>: The average score of Group B is higher than Group A.</li>
+</ul>
+<p>In summary, the test shows a significant difference between the means of the two groups, with Group B having higher scores</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the iris data set, compare the petal length of the <em>versicolor</em> and <em>virginica</em> species using two-sample t-test. Interpret the results</p>
+</div>
+<div id="anova-analysis-of-variance" class="section level4 hasAnchor" number="4.3.1.3">
+<h4><span class="header-section-number">4.3.1.3</span> ANOVA (Analysis of Variance)<a href="general-statistics.html#anova-analysis-of-variance" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>ANOVA is a statistical test used to analyze the difference between the means of more than two groups. This is different from the ttest that analyzes one or two groups, it uses F test to find the statistical significance. Multiple means are compared at once and if one mean is different the hypothesis is rejected.</p>
+<p>The F test compares the variance in each group from the overal group variance.</p>
+<p>An practical example of ANOVA is where a farmer wants to test the effect of three different fertilizers on the crop yield. The difference in the crop yield will be calculated.</p>
+<p>Before conducting ANOVA, the following assumptions are made;</p>
+<ol style="list-style-type: lower-roman">
+<li><strong>Independence of observations</strong>: the data was collected using statistically valid sampling methods and there are no hidden relationships among the observations.</li>
+<li><strong>Normal distribution</strong>: the dependent variable should follow a normal distribution.</li>
+<li><strong>Homogeinity of variance</strong>: All the groups being tested should have similar variations.</li>
+</ol>
+<p>Lets calculate the ANOVA using the the crop yield data set. The fertilizer are in three categories; 1, 2 and 3</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="general-statistics.html#cb218-1" tabindex="-1"></a><span class="co"># Load the data set </span></span>
+<span id="cb218-2"><a href="general-statistics.html#cb218-2" tabindex="-1"></a>crop_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/cropdata.csv&quot;</span>)</span>
+<span id="cb218-3"><a href="general-statistics.html#cb218-3" tabindex="-1"></a><span class="fu">head</span>(crop_df) <span class="co"># view the first few rows of the data set</span></span></code></pre></div>
+<pre><code>##   density block fertilizer    yield
+## 1       1     1          1 177.2287
+## 2       2     2          1 177.5500
+## 3       1     3          1 176.4085
+## 4       2     4          1 177.7036
+## 5       1     1          1 177.1255
+## 6       2     2          1 176.7783</code></pre>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="general-statistics.html#cb220-1" tabindex="-1"></a><span class="co"># Calculate one way ANOVA </span></span>
+<span id="cb220-2"><a href="general-statistics.html#cb220-2" tabindex="-1"></a>anova <span class="ot">&lt;-</span> <span class="fu">aov</span>(yield <span class="sc">~</span> fertilizer, <span class="at">data =</span> crop_df)</span>
+<span id="cb220-3"><a href="general-statistics.html#cb220-3" tabindex="-1"></a>anova</span></code></pre></div>
+<pre><code>## Call:
+##    aov(formula = yield ~ fertilizer, data = crop_df)
+## 
+## Terms:
+##                 fertilizer Residuals
+## Sum of Squares     5.74322  36.21101
+## Deg. of Freedom          1        94
+## 
+## Residual standard error: 0.6206638
+## Estimated effects may be unbalanced</code></pre>
+<p>The ANOVA output provides insights into the variation in crop yield explained by the fertilizer type. Here’s a detailed breakdown of the results:</p>
+<ul>
+<li><p><strong>Sum of Squares (fertilizer) = 5.74322</strong>: This value represents the variation in crop yield that can be attributed to the different types of fertilizers used in the experiment. In this case, 5.74322 units of the total variation are explained by fertilizer differences.</p></li>
+<li><p><strong>Sum of Squares (Residuals) = 36.21101</strong>: This is the unexplained variation in crop yield, also known as the error term. This shows how much of the variation is due to factors not accounted for in the model, such as environmental factors or random error.</p></li>
+<li><p><strong>Degrees of Freedom (fertilizer) = 1</strong>: There is only 1 degree of freedom for the fertilizer factor, which means there was a comparison between two groups (likely two fertilizer types or one fertilizer versus a control).</p></li>
+<li><p><strong>Degrees of Freedom (Residuals) = 94</strong>: There are 94 degrees of freedom associated with the residuals. This is related to the total number of observations minus the number of groups being compared. In this case, the large degrees of freedom indicate a sizable data set.</p></li>
+<li><p><strong>Residual Standard Error = 0.6206638</strong>: This value represents the typical deviation of the observed yield values from the predicted values, given the current model. A lower residual standard error suggests a better fit of the model to the data, though this value needs to be interpreted in context.</p></li>
+</ul>
+<p>The results show that the fertilizer type explains some of the variation in crop yield (Sum of Squares = 5.74322), while a larger portion remains unexplained (Sum of Squares of Residuals = 36.21101). To fully interpret the significance of this effect, a p-value and F-statistic would typically be calculated, but these are not provided here. Additionally, the residual standard error (0.6206638) gives an indication of the spread of the data around the predicted values, but more information would be needed to assess the strength of the model’s fit.</p>
+<p>In conclusion, while the fertilizer has some effect on crop yield, the overall variability and potential unbalanced data need further exploration for a complete understanding.</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Perform ANOVA on the sepal width of the three species in the iris data set and interpret the results.</p>
+</div>
+<div id="chi-square-test" class="section level4 hasAnchor" number="4.3.1.4">
+<h4><span class="header-section-number">4.3.1.4</span> Chi-Square Test<a href="general-statistics.html#chi-square-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>This is a statistical test that determines the difference between the observed and the expected data. It determines if the relationship between two categorical variables is due to chance or a relationship between them.</p>
+<p>It is calculated by;
+<span class="math display">\[x_{c}^{2} = \frac{\sum(O_{i}-E_{i})}{E_i}\]</span></p>
+<p>Where;</p>
+<ol style="list-style-type: lower-roman">
+<li><span class="math inline">\(c\)</span> is the degree of freedom. This is a statistical calculation that represents the number of variables that can carry and is calculated to ensure the chi-square tests are statistically valid</li>
+<li><span class="math inline">\(O\)</span> is the observed value</li>
+<li><span class="math inline">\(E\)</span> is the expected value</li>
+</ol>
+<p>Lets perform Chi-square on a survey data from the <code>MASS</code> library. The survey data represents data from a survey conducted on students.</p>
+<ul>
+<li>Null Hypothesis (<span class="math inline">\(H_0\)</span>): The smoking habit is independent of the student’s exercise level</li>
+<li>ALternate Hypothesis (<span class="math inline">\(H_a\)</span>): The smoking habit is dependent on the exercise level.</li>
+</ul>
+<p>Load the data</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="general-statistics.html#cb222-1" tabindex="-1"></a><span class="co"># Load the library</span></span>
+<span id="cb222-2"><a href="general-statistics.html#cb222-2" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select</code></pre>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="general-statistics.html#cb225-1" tabindex="-1"></a><span class="fu">head</span>(survey) <span class="co"># view the data</span></span></code></pre></div>
+<pre><code>##      Sex Wr.Hnd NW.Hnd W.Hnd    Fold Pulse    Clap Exer Smoke Height      M.I
+## 1 Female   18.5   18.0 Right  R on L    92    Left Some Never 173.00   Metric
+## 2   Male   19.5   20.5  Left  R on L   104    Left None Regul 177.80 Imperial
+## 3   Male   18.0   13.3 Right  L on R    87 Neither None Occas     NA     &lt;NA&gt;
+## 4   Male   18.8   18.9 Right  R on L    NA Neither None Never 160.00   Metric
+## 5   Male   20.0   20.0 Right Neither    35   Right Some Never 165.00   Metric
+## 6 Female   18.0   17.7 Right  L on R    64   Right Some Never 172.72 Imperial
+##      Age
+## 1 18.250
+## 2 17.583
+## 3 16.917
+## 4 20.333
+## 5 23.667
+## 6 21.000</code></pre>
+<p>Create a contigency table between the Smoke and the Exercise leel.</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="general-statistics.html#cb227-1" tabindex="-1"></a><span class="co"># Create a contingency table with the needed variables.       </span></span>
+<span id="cb227-2"><a href="general-statistics.html#cb227-2" tabindex="-1"></a>stu_data <span class="ot">=</span> <span class="fu">table</span>(survey<span class="sc">$</span>Smoke,survey<span class="sc">$</span>Exer) </span>
+<span id="cb227-3"><a href="general-statistics.html#cb227-3" tabindex="-1"></a>                 </span>
+<span id="cb227-4"><a href="general-statistics.html#cb227-4" tabindex="-1"></a><span class="fu">print</span>(stu_data)</span></code></pre></div>
+<pre><code>##        
+##         Freq None Some
+##   Heavy    7    1    3
+##   Never   87   18   84
+##   Occas   12    3    4
+##   Regul    9    1    7</code></pre>
+<p>Perform the chi-square test on the <code>stu_data</code>, the contigency table.</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="general-statistics.html#cb229-1" tabindex="-1"></a><span class="co"># applying chisq.test() function</span></span>
+<span id="cb229-2"><a href="general-statistics.html#cb229-2" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">chisq.test</span>(stu_data))</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  stu_data
+## X-squared = 5.4885, df = 6, p-value = 0.4828</code></pre>
+<p>From the results, the p-value is 0.4828 which is greater than 0.05 therefore the null hypothesis is not rejected. It’c concluded that the smoking habit is independent of the exercise level since there is weak to now correlation between the <code>Smoke</code> and <code>Exer</code> variables.</p>
+<p>Finally, lets visualize the results from the contigency table;</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="general-statistics.html#cb231-1" tabindex="-1"></a><span class="co"># Visualize the data with a bar plot</span></span>
+<span id="cb231-2"><a href="general-statistics.html#cb231-2" tabindex="-1"></a><span class="fu">barplot</span>(stu_data, <span class="at">beside =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>),</span>
+<span id="cb231-3"><a href="general-statistics.html#cb231-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Smoking Habits vs Exercise Levels&quot;</span>,</span>
+<span id="cb231-4"><a href="general-statistics.html#cb231-4" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Exercise Level&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Number of Students&quot;</span>)</span>
+<span id="cb231-5"><a href="general-statistics.html#cb231-5" tabindex="-1"></a> </span>
+<span id="cb231-6"><a href="general-statistics.html#cb231-6" tabindex="-1"></a><span class="co"># Add legend separately</span></span>
+<span id="cb231-7"><a href="general-statistics.html#cb231-7" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;center&quot;</span>, <span class="at">legend =</span> <span class="fu">rownames</span>(stu_data), <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<p>You can see from the table, those students who never smoke lead in every exercise level while the heavy smokers are the least in every group.</p>
+<p><span style="color: green;"><strong>Practical exercise</strong></span></p>
+<p>Using the Iris data set, perform a Chi-square test to determine if there is a relationship between two categorical variables: the species (Species) and a new categorical variable that classifies sepal width (Sepal.Length) into categories (e.g., “Short”, “Medium”, “Long”).</p>
+<ul>
+<li>“Short”: below 3.0</li>
+<li>“Medium”: above 3.0 to 3.8</li>
+<li>“Long”: above 3.8</li>
+</ul>
+<p>Follow the steps below;</p>
+<ol style="list-style-type: decimal">
+<li>Create a new variable <code>sepal.Width.Category</code> in the data set by categorizing the Sepal.Width variable into 3 categories: <code>"Short"</code>, <code>"Medium"</code>, and <code>"Long"</code> (as per the defined ranges).</li>
+<li>Perform a Chi-square test to see if there’s an association between the new <code>sepal.Width.Category</code> categories and the <code>Species</code> column.</li>
+<li>Interpret the results of the Chi-square test</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="hands-on-exercise-2" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> <span style="color: green;"><strong>Hands-on Exercise</strong></span><a href="general-statistics.html#hands-on-exercise-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You are required to download the Groundhog Day Forecasts and Temperatures data set from <a href="https://www.kaggle.com/datasets/groundhogclub/groundhog-day">here</a>.</p>
+<ul>
+<li>Perform one sample t-test on February Average temperature. The pre-assumed mean is 35</li>
+<li>Conduct two sample t-test between the North East average temperature for March and the overall March daily temperature</li>
+<li>Perform ANOVA between the presence of Punxsutawney Phil and the February average temperature</li>
+</ul>
+<p>Interpret the results</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="group-manipulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="simple-linear-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/balsaedi/RCourse/edit/main/04-general_statistics.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/balsaedi/RCourse/blob/main/04-general_statistics.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
