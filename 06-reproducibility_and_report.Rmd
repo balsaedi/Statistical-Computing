@@ -73,6 +73,10 @@ ggplot(mtcars, aes(x = hp, y = mpg)) +
 - Click the **Knit** button to render your report into an HTML, PDF, or Word document.
 - Notice how your code, output, and comments are all integrated.
 
+Here is how the report should look like when knitted. 
+
+![](images/example-knitted_report.png)
+
 
 ## Going Beyond: Shiny for Interactive Reporting
 
